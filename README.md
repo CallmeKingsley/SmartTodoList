@@ -1,5 +1,23 @@
-this will be a todo list created with redux
+this will be a super smart to list with both front and backend
 
-Technology:
-webpack
-babel
+Technology and dependencies:
+react js,
+webpack,
+babel,
+cor,
+moment,
+google style,
+eslint,
+jest,
+redux,
+redux form,
+bootstrap,
+uuid,
+nodemon,
+lodash,
+express,
+bodyParser,
+axios,
+passport,
+morgan,
+husky,
