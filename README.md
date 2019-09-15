@@ -29,7 +29,10 @@ add react js , webpack , babel
 add .gitignore file
 add .babelrc file
 add webpack.config.js
-add create Html frames[index.html]
+create Html frames[index.html]
+set up package.json entry point
+set up webpack in webpack.config.js 
+
 
 git commands:
 git add . : stage all changes
@@ -46,7 +49,7 @@ installs:
 -React
 npm install --save react react-dom
 -Babel
-npm install --save-dev babel-core babel-loader babel-preset-react
+npm install --save-dev @babel/core babel-loader @babel/preset-react @babel/preset-env
 -webpack
-npm install --save-dev webpack webpack-dev-server html-webpack-plugin
+npm install --save-dev webpack webpack-dev-server html-webpack-plugin webpack-cli
 
