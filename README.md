@@ -1,9 +1,9 @@
 this will be a super smart to list with both front and backend
 
 Technology and dependencies:
-react js,
-webpack,
-babel,
+*-> react js,
+*-> webpack,
+*-> babel,
 cor,
 moment,
 google style,
@@ -21,6 +21,7 @@ axios,
 passport,
 morgan,
 husky,
+SQL
 
 
 Steps:
@@ -32,6 +33,10 @@ add webpack.config.js
 create Html frames[index.html]
 set up package.json entry point
 set up webpack in webpack.config.js 
+set up index.js
+set App.js
+
+
 
 
 git commands:
@@ -44,6 +49,8 @@ git branch [newbranchName]: create a new branch
 git push origin  [nameBranchToPushTo/master(location)] : push to a branch
 git push -u origin  [nameBranchToPushTo/master(location)] : push to a branch
 git branch -d [nameOfBranch]: delete branch
+git ls-remote .
+git ls-remote origin
 
 installs:
 -React
@@ -52,4 +59,6 @@ npm install --save react react-dom
 npm install --save-dev @babel/core babel-loader @babel/preset-react @babel/preset-env
 -webpack
 npm install --save-dev webpack webpack-dev-server html-webpack-plugin webpack-cli
+-concurrently
+npm install -g concurrently
 
