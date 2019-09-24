@@ -13,15 +13,16 @@ redux,
 redux form,
 bootstrap,
 uuid,
-nodemon,
+*->nodemon,
 lodash,
-express,
+*->express,
 bodyParser,
 axios,
 passport,
-morgan,
+*->morgan,
 husky,
 SQL
+passport js
 
 
 Steps:
@@ -61,4 +62,8 @@ npm install --save-dev @babel/core babel-loader @babel/preset-react @babel/prese
 npm install --save-dev webpack webpack-dev-server html-webpack-plugin webpack-cli
 -concurrently
 npm install -g concurrently
+-set up passport and express backend
+npm install express nodemon morgan bcrypt passport express-session express-flash passport-local --save-dev
+-Temporary backend Test
+npm install ejs --save-dev
 
