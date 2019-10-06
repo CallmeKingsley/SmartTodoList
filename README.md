@@ -1,4 +1,4 @@
-this will be a super smart to list with both front and backend
+this will be a super smart to do list with both front and backend
 
 Technology and dependencies:
 *-> react js,
