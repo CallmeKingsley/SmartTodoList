@@ -23,6 +23,7 @@ passport,
 husky,
 SQL
 passport js
+design https://app.moqups.com
 
 
 Steps:
@@ -66,4 +67,9 @@ npm install -g concurrently
 npm install express nodemon morgan bcrypt passport express-session express-flash passport-local --save-dev
 -Temporary backend Test
 npm install ejs --save-dev
+-Database
+npm install mongoose --save-dev
+-to be able to use req 
+npm install body-parser --save-dev
+
 
