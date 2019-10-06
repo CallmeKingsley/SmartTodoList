@@ -1,4 +1,4 @@
-this will be a super smart to do list with both front and backend
+This will be a very smart to do list with react frontend and  mongoseDb backend. the application will be deployed to heroku.
 
 Technology and dependencies:
 *-> react js,
@@ -21,8 +21,8 @@ axios,
 passport,
 *->morgan,
 husky,
-SQL
-passport js
+mongoose,
+passport js,
 design https://app.moqups.com
 
 
