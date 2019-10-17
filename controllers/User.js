@@ -2,7 +2,11 @@ const UserModel = require('../models/User');
 const mongoose = require("mongoose");
 
 module.exports = {
-
+    /**
+     * can retrieve user by ID
+     * @param {*} req 
+     * @param {*} res 
+     */
     getUser(req,res){
     
         UserModel.find()
@@ -25,7 +29,11 @@ module.exports = {
         });
 
     },
-
+    /**
+     * works perfectly and can find any user by id
+     * @param {*} req 
+     * @param {*} res 
+     */
     findUser(req,res){
         const id = req.params.userId;
         console.log(id)
@@ -46,6 +54,11 @@ module.exports = {
         res.status(500).json({ error: err });
         });
     },
+    /**
+     * have issue but still working on it
+     * @param {*} req 
+     * @param {*} res 
+     */
     UpdateUser(req,res){
         const id = req.params.userId;
         const updateOps = {};
@@ -65,6 +78,10 @@ module.exports = {
         });
         });
     },
+    /***
+     * works perfectly 
+     * adds user to the DB
+     */
     addUser(req,res){
        
         const user = new UserModel({

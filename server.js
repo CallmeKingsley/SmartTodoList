@@ -6,9 +6,9 @@ const passport  = require('passport');
 const flash = require('express-flash');
 const session  = require('express-session');
 const mongoose = require('mongoose');
-const Product  = require('../reactRedux/models/index')
 const bodyParser = require("body-parser");
 const api = require('../reactRedux/routes/Api');
+
 //Password1
 app.set('view-engine', 'ejs');
 app.use(morgan('dev'));
@@ -50,76 +50,6 @@ mongoose.connect(
       }else{
           console.log("something good happened")
       }
-})
-
-app.get('/', (req, res) => {
-    res.render('index.ejs',{name : req.user.name})
-})
-
-app.get('/test', (req, res) => {
-    Product.find()
-    .exec()
-    .then(docs => {
-      console.log(docs);
-      //   if (docs.length >= 0) {
-      res.status(200).json(docs);
-      //   } else {
-      //       res.status(404).json({
-      //           message: 'No entries found'
-      //       });
-      //   }
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({
-        error: err
-      });
-    });
-})
-
-
-
-app.post('/test', (req, res) => {
-    console.log(req.body)
-    const product = new Product({
-        _id: new mongoose.Types.ObjectId(),
-        name: req.body.name,
-        price: req.body.price
-      });
-      product
-        .save()
-        .then(result => {
-          console.log(result);
-          res.status(201).json({
-            message: "Handling POST requests to /products",
-            createdProduct: result
-          });
-        })
-        .catch(err => {
-          console.log(err);
-          res.status(500).json({
-            error: err
-          });
-        });
-})
-
-app.get('/login', (req, res) => {
-    res.render('login.ejs')
-})
-
-app.post('/login', (req, res) => {
-    res.render('index.ejs')
-})
-//app.post('/login',checkNotAuthenticated,passport)
-
-
-
-app.post('/register', (req, res) => {
-    res.render('index.ejs')
-})
-
-app.get('/register', (req, res) => {
-    res.render('register.ejs')
 })
 
 app.listen(3000,()=>{
