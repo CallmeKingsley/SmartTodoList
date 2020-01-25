@@ -24,6 +24,8 @@ husky,
 mongoose,
 passport js,
 design https://app.moqups.com
+planner MeisterTask
+props-type
 
 
 Steps:
