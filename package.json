@@ -8,7 +8,8 @@
     "build": "webpack --node production",
     "start": "concurrently \"npm run client\" \" npm run server\"",
     "server": "nodemon server.js",
-    "client": "webpack-dev-server --mode development --open --hot"
+    "client": "webpack-dev-server --mode development --open --hot",
+    "fixcode": "standard --fix"
   },
   "repository": {
     "type": "git",
@@ -21,11 +22,26 @@
   },
   "homepage": "https://github.com/CallmeKingsley/ReduxPractice#readme",
   "dependencies": {
+    "@material-ui/core": "^4.9.7",
+    "@material-ui/icons": "^4.9.1",
+    "babel-polyfill": "^6.26.0",
+    "dotenv": "^8.2.0",
+    "prop-types": "^15.7.2",
+    "ramda": "^0.27.0",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-devtools": "^3.5.0",
+    "redux-persist": "^6.0.0",
+    "redux-persist-seamless-immutable": "^2.0.0",
+    "redux-saga": "^1.1.3",
+    "reduxsauce": "^1.1.2",
+    "seamless-immutable": "^7.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.6.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
@@ -33,6 +49,7 @@
     "body-parser": "^1.19.0",
     "concurrently": "^4.1.2",
     "ejs": "^2.7.1",
+    "eslint": "^4.19.1",
     "express": "^4.17.1",
     "express-flash": "0.0.2",
     "express-session": "^1.16.2",
@@ -42,6 +59,7 @@
     "nodemon": "^1.19.2",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "standard": "^14.3.3",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.8",
     "webpack-dev-server": "^3.8.0"
