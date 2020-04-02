@@ -1,10 +1,13 @@
 const mongoose = require('mongoose')
 
 const UserSchema = mongoose.Schema({
-  userId: mongoose.Schema.Types.ObjectId,
   Name: String,
   Email: String,
-  Password: String
+  Password: String,
+  createdTodos: [{
+    type : mongoose.Schema.Types.ObjectId,
+    ref: 'todoItem'
+  }]
 })
 
 module.exports = mongoose.model('UserSchema', UserSchema)

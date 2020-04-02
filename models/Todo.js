@@ -1,9 +1,12 @@
 const mongoose = require('mongoose')
 
 const todoSchema = mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
   todoItem: String,
-  userId: Number
+  createdTime: String,
+  creator:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'UserSchema'
+  }
 })
 
 module.exports = mongoose.model('todoItem', todoSchema)

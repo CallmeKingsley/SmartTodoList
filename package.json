@@ -20,12 +20,16 @@
   "bugs": {
     "url": "https://github.com/CallmeKingsley/ReduxPractice/issues"
   },
+  "proxy": "http://localhost:3000",
   "homepage": "https://github.com/CallmeKingsley/ReduxPractice#readme",
   "dependencies": {
     "@material-ui/core": "^4.9.7",
     "@material-ui/icons": "^4.9.1",
+    "apisauce": "^1.1.1",
     "babel-polyfill": "^6.26.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "express-validator": "^6.4.0",
     "prop-types": "^15.7.2",
     "ramda": "^0.27.0",
     "react": "^16.9.0",
