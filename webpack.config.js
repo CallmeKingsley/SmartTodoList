@@ -21,5 +21,5 @@ module.exports = {
     filename: 'transform.js',
     path: path.join(__dirname, '/Configs/build')
   },
-  plugins: [HTMLWebPackPluginConfig],
+  plugins: [HTMLWebPackPluginConfig]
 }

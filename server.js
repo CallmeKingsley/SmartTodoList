@@ -6,7 +6,6 @@ const bodyParser = require('body-parser')
 const api = require('./Routes/Api')
 const config = require('./Config')
 
-
 config.mongodbConfig()
 
 // middlewares
@@ -22,4 +21,3 @@ const port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log('connected')
 })
-

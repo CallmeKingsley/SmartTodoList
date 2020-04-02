@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const todoSchema = mongoose.Schema({
   todoItem: String,
   createdTime: String,
-  creator:{
+  creator: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'UserSchema'
   }

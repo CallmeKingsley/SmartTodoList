@@ -3,8 +3,8 @@ require('dotenv').config()
 
 module.exports = {
 
-    mongodbConfig(){
-        mongoose.connect(
+  mongodbConfig () {
+    mongoose.connect(
         `mongodb://smart_todoList:${process.env.MongoDB_Pw}@ds229068.mlab.com:29068/${process.env.MongoDB_Username}`
         , (err) => {
           if (err) {
@@ -13,7 +13,7 @@ module.exports = {
           } else {
             console.log('something good happened')
           }
-      })
-    }
-    
+        })
+  }
+
 }

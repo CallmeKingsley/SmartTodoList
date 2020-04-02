@@ -6,7 +6,7 @@ import { UserType } from '../Redux/TodoRedux'
 /* ------------ sagas ----------- */
 import { addTodo } from './TodoSagas'
 
-const Api  = API.createApi()
+const Api = API.createApi()
 /* ------------ sagas ----------- */
 export default function * root () {
   yield all([

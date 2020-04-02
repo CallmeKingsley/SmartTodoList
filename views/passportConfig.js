@@ -2,18 +2,13 @@ const express = require('express')
 const app = express()
 const morgan = require('morgan')
 const cors = require('cors')
-const Product = require('./Models/index')
 const bodyParser = require('body-parser')
 const api = require('./routes/Api')
-
 
 // const bcrypt = require('bcrypt')
 // const passport = require('passport')
 // const flash = require('express-flash')
 // const session = require('express-session')
-
-
-
 
 // middlewares
 app.set('view-engine', 'ejs')
@@ -54,7 +49,6 @@ app.use('/api', api)
     }
     next();
 });
-*/
 
 mongoose.connect(
   `mongodb://smart_todoList:${process.env.MongoDB_Pw}@ds229068.mlab.com:29068/${process.env.MongoDB_Username}`
@@ -65,7 +59,7 @@ mongoose.connect(
     } else {
       console.log('something good happened')
     }
-})
+  })
 
 app.get('/', (req, res) => {
   res.render('index.ejs', { name: req.user.name })
@@ -131,9 +125,7 @@ app.post('/register', (req, res) => {
 app.get('/register', (req, res) => {
   res.render('register.ejs')
 })
-
-
-
+*/
 // function checkNotAuthenticated (req, res, next) {
 //   if (req.isAuthenticated()) {
 //     return res.redirect('/')
