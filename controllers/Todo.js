@@ -7,7 +7,7 @@ module.exports = {
     try {
       const todos = await TodoModel.find({})
       res.status(200).json({
-        todos: todos
+        todos
       })
     } catch (err) {
       res.status(204).json({

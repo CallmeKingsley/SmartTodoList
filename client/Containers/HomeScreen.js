@@ -1,15 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import TodoRedux from '../Redux/TodoRedux'
-import Footer from '../Components/Footer'
-import App from './App'
+import NavBar from '../Components/Navbar'
 
-class RootContainer extends Component {
+
+class HomeScreen extends Component {
+
+  constructor (props) {
+    super(props)
+
+    this.state = {};
+  }
+
+  
   render () {
     return (
       <div>
-        <App />
-        <Footer />
+        <NavBar />
       </div>
     )
   }
@@ -22,4 +29,4 @@ const mapDispatchToProps = dispatch => ({
   addTodo: item => dispatch(TodoRedux.addTodo(item))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(RootContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

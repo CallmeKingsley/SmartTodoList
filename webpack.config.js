@@ -15,7 +15,7 @@ module.exports = {
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel-loader'
-    }]
+    }, { test: /\.css$/, use: 'css-loader' }]
   },
   output: {
     filename: 'transform.js',
