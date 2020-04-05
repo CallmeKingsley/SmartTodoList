@@ -1,5 +1,4 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import MaterialInport from '../materialUI'
 import { Link } from 'react-router-dom'
@@ -8,8 +7,8 @@ const MaterialUI = MaterialInport()
 export const InputField = (prop) => {
   return (
     <MaterialUI.TextField
-      type = {prop.type ? 'text' : 'password' }
-      error = {prop.error}
+      type={prop.type ? 'text' : 'password'}
+      error={prop.error}
       variant='outlined'
       margin={prop.margin}
       required
@@ -25,14 +24,13 @@ export const InputField = (prop) => {
   )
 }
 InputField.defaultProps = {
-  type: true,
+  type: true
 }
-
 
 export const GridInputField = (prop) => {
   return (
     <MaterialUI.Grid item xs={12}>
-      <InputField id={prop.id} label={prop.label} name={prop.name} autoComplete={prop.autoComplete} handleChange={prop.handleChange} type = {prop.type}  error = {prop.error} helpText = {prop.helpText}/>
+      <InputField id={prop.id} label={prop.label} name={prop.name} autoComplete={prop.autoComplete} handleChange={prop.handleChange} type={prop.type} error={prop.error} helpText={prop.helpText} />
     </MaterialUI.Grid>
   )
 }
@@ -45,7 +43,6 @@ export const TwoInputFieldGrid = (prop) => {
 }
 
 export const Button = (prop) => {
-
   return (
     <MaterialUI.Button
       type={prop.type}
@@ -59,9 +56,9 @@ export const Button = (prop) => {
   )
 }
 Button.defaultProps = {
-    type: 'submit',
-    variant: 'contained',
-    color: 'primary'
+  type: 'submit',
+  variant: 'contained',
+  color: 'primary'
 }
 
 export const Linkto = (prop) => {
@@ -76,7 +73,7 @@ export const SignInLinks = (prop) => {
   return (
     <MaterialUI.Grid container>
       <MaterialUI.Grid item xs>
-        <Linkto path={firstLink} message={prop.firstMessage} />
+        <Linkto path={prop.firstLink} message={prop.firstMessage} />
       </MaterialUI.Grid>
       <MaterialUI.Grid item>
         <Linkto path={prop.secondLink} message={prop.secondMessage} />

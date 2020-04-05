@@ -3,16 +3,13 @@ import { connect } from 'react-redux'
 import TodoRedux from '../Redux/TodoRedux'
 import NavBar from '../Components/Navbar'
 
-
 class HomeScreen extends Component {
-
   constructor (props) {
     super(props)
 
-    this.state = {};
+    this.state = {}
   }
 
-  
   render () {
     return (
       <div>

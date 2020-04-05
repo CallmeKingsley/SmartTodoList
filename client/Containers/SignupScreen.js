@@ -55,14 +55,12 @@ class SignupScreen extends Component {
 
         const isMatchPassword = mataching(password,confirmPassword)
         const confirmPwErrorMg = Validationfunc(isMatchPassword,'Password don\'t match')
-        console.log(isMatchPassword)
         if(confirmPwErrorMg){
             this.setState({
                 confirmPwErrorMg
             })
         }
 
-        console.log(this.state)
         if(email && password && name && confirmPassword && username){
             //this.props.addTodo({email,password})
             console.log(this.props.userName)

@@ -8,9 +8,8 @@ import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import InputAdornment from '@material-ui/core/InputAdornment';
-import IconButton from '@material-ui/core/IconButton';
-
+import InputAdornment from '@material-ui/core/InputAdornment'
+import IconButton from '@material-ui/core/IconButton'
 
 export default () => {
   return {
@@ -24,6 +23,6 @@ export default () => {
     AppBar,
     Toolbar,
     InputAdornment,
-    IconButton,
+    IconButton
   }
 }

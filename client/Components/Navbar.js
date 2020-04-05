@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import MaterialInport from '../materialUI'
 import { useStyles } from './Styles/NavBarStyles'
@@ -15,40 +15,40 @@ const NavBar = (prop) => {
            Company name
           </Link>
         </MaterialUI.Typography>
-        {prop.restrict == false ? <RestrictedNav/> : '' }
-        <NavButton path = '/login' name = 'Login' />
-        <NavButton path = '/signUp' name = 'SignUp' />
+        {prop.restrict === false ? <RestrictedNav /> : ''}
+        <NavButton path='/login' name='Login' />
+        <NavButton path='/signUp' name='SignUp' />
       </MaterialUI.Toolbar>
     </MaterialUI.AppBar>
   )
 }
 
-const RestrictedNav = ()=>{
+const RestrictedNav = () => {
   return (
     <nav>
-      <StringLink name = 'Feature'/>
-      <StringLink name = 'Enterprise'/>
-      <StringLink name = 'Support'/>
+      <StringLink name='Feature' />
+      <StringLink name='Enterprise' />
+      <StringLink name='Support' />
     </nav>
   )
 }
 
-const StringLink = (prop)=>{
+const StringLink = (prop) => {
   const classes = useStyles()
-  return(
-    <Link variant='button' color='textPrimary'  className={classes.link}>
-     {prop.name}
-   </Link>
+  return (
+    <Link variant='button' color='textPrimary' className={classes.link}>
+      {prop.name}
+    </Link>
   )
 }
 
-const NavButton = (prop)=>{
+const NavButton = (prop) => {
   const classes = useStyles()
-  return(
+  return (
     <MaterialUI.Button color='primary' variant='outlined' className={classes.link}>
-        <Link className={classes.toolbarTitle} to={prop.path}>
-           {prop.name}
-        </Link>
+      <Link className={classes.toolbarTitle} to={prop.path}>
+        {prop.name}
+      </Link>
     </MaterialUI.Button>
   )
 }

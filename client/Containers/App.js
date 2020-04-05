@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import LoginScreen from './LoginScreen'
 import NavBar from '../Components/Navbar'
 import ForgotPwScreen from '../Containers/ForgotPwScreen'
@@ -6,8 +6,7 @@ import Home from '../Containers/HomeScreen'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from 'react-router-dom'
 import SignupScreen from './SignupScreen'
 
@@ -26,14 +25,14 @@ export default function App () {
         </Route>
         <Route path='/login'>
           <LoginScreen />
-        </Route> 
+        </Route>
         <Route path='/home'>
-          <Home  />
+          <Home />
         </Route>
         <Route path='/'>
           <NavBar />
         </Route>
-       
+
       </Switch>
     </Router>
   )
