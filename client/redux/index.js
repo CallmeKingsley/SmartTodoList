@@ -5,7 +5,9 @@ import rootSaga from '../Sagas/'
 import 'babel-polyfill'
 
 export const reducers = combineReducers({
-  User: require('../Redux/TodoRedux').reducer
+  todo: require('./TodoRedux').reducer,
+  user: require('./UserRedux').reducer
+
 })
 
 let storeInstance = null

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import LoginForm from '../Components/LoginForm'
 import { connect } from 'react-redux'
-import TodoRedux from '../Redux/TodoRedux'
+import UserRedux from '../Redux/UserRedux'
 import Nav from '../Components/Navbar'
+import {isNil, prop} from 'ramda'
 import {validateEmail,requiredLength,Validationfunc} from '../Validation'
 
 class LoginScreen extends Component {
@@ -11,10 +12,10 @@ class LoginScreen extends Component {
     this.onhandleSubmit = this.onhandleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.state = {
-      name:'',
       email: '',
       password: '',
       emailValidation: { error: false, helpText: ''},
+      emailDoesntExist: { error: true, helpText: 'Email Doesn\'t Exist'},
       PasswordValidation: { error: false, helpText: ''}
     };
   }
@@ -40,10 +41,9 @@ class LoginScreen extends Component {
       })
     }
   
-    if(pwResult && emailResult){
-        //this.props.addTodo({email,password})
-        console.log(this.props.userName)
-        console.log(item)
+    if(!pwResult.error && !emailResult.error){
+        console.log('i was login')
+        this.props.loginUser({email,password})
     }
     event.preventDefault();
   }
@@ -57,7 +57,7 @@ class LoginScreen extends Component {
       <div>
         <Nav restrict ={true}/>
         <LoginForm handleSubmit={this.onhandleSubmit} 
-        emailValidation = {this.state.emailValidation} 
+        emailValidation = {isNil(this.props.serverLoginError) ? this.state.emailValidation :this.state.emailDoesntExist } 
         passwordValidation ={this.state.PasswordValidation} 
         handleChange ={this.handleChange}/>
       </div>
@@ -66,11 +66,11 @@ class LoginScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-  userName: state.User.firstName
+  serverLoginError: state.user.errors.authenticationError.login
 })
 
 const mapDispatchToProps = dispatch => ({
-  addTodo: item => dispatch(TodoRedux.addTodo(item))
+  loginUser: item => dispatch(UserRedux.loginUser(item))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)

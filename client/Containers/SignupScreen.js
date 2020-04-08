@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import SignupForm from '../Components/SignupForm'
 import { connect } from 'react-redux'
-import TodoRedux from '../Redux/TodoRedux'
+import UserAction from '../Redux/UserRedux'
 import Nav from '../Components/Navbar'
+import {isNil, prop} from 'ramda'
 import {validateEmail,requiredLength,Validationfunc,emptyString, mataching} from '../Validation'
 class SignupScreen extends Component {
 
@@ -12,7 +13,6 @@ class SignupScreen extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.state = {
             username:'',
-            name:'',
             email: '',
             password: '',
             confirmPassword: '',
@@ -20,6 +20,7 @@ class SignupScreen extends Component {
             emailErrorMg :{ error: false, helpText: ''},
             passwordErrorMg :{ error: false, helpText: ''},
             confirmPwErrorMg :{ error: false, helpText: ''},
+            emailAlreadyExist :{ error: true, helpText: 'Email Already Exist'},
         };
     }
     
@@ -36,7 +37,7 @@ class SignupScreen extends Component {
                 usernameErrorMg
             })
         }
-
+  
         const isValidEmail = validateEmail(email)
         const emailErrorMg = Validationfunc(isValidEmail, 'Invalid email')
         if(emailErrorMg){
@@ -60,12 +61,10 @@ class SignupScreen extends Component {
                 confirmPwErrorMg
             })
         }
-
-        if(email && password && name && confirmPassword && username){
-            //this.props.addTodo({email,password})
-            console.log(this.props.userName)
-            console.log(this.state)
-        }
+       
+        if(!usernameErrorMg.error && !confirmPwErrorMg.error && !emailErrorMg.error && !passwordErrorMg.error ){
+           this.props.createAccount({username,email,password}) 
+        }        
         event.preventDefault();
     }
     
@@ -81,8 +80,8 @@ class SignupScreen extends Component {
              handleSubmit={this.onhandleSubmit}  
              handleChange ={this.handleChange}
              usernameErrorMg = {this.state.usernameErrorMg}
-             emailErrorMg  = {this.state.emailErrorMg}
-             passwordErrorMg = {this.state.passwordErrorMg}
+             emailErrorMg  = { isNil(this.props.serverSignUpError) ? this.state.emailErrorMg : this.state.emailAlreadyExist}
+             passwordErrorMg = { this.state.passwordErrorMg}
              confirmPwErrorMg = {this.state.confirmPwErrorMg}
              />
             </div>
@@ -91,11 +90,11 @@ class SignupScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-    userName: state.User.firstName
+    serverSignUpError: state.user.errors.authenticationError.signup
 })
   
 const mapDispatchToProps = dispatch => ({
-    addTodo: item => dispatch(TodoRedux.addTodo(item))
+    createAccount: user => dispatch(UserAction.createAccount(user))
 })
   
 export default connect(mapStateToProps, mapDispatchToProps)(SignupScreen)

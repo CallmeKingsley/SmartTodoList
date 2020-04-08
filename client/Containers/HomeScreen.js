@@ -13,14 +13,15 @@ class HomeScreen extends Component {
   render () {
     return (
       <div>
-        <NavBar />
+        <NavBar authenticated />
+        <h1>Home</h1>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  userName: state.User.firstName
+  userName: state.todo.firstName
 })
 const mapDispatchToProps = dispatch => ({
   addTodo: item => dispatch(TodoRedux.addTodo(item))

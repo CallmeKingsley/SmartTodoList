@@ -7,7 +7,7 @@ const { Types, Creators } = createActions({
   saveTodo: ['todo']
 })
 
-export const UserType = Types
+export const TodoType = Types
 export default Creators
 
 /* ------------ Initial State ----------- */

@@ -1,4 +1,4 @@
-import UserRedux, { TodoSelector } from '../Redux/TodoRedux'
+import TodoType, { TodoSelector } from '../Redux/TodoRedux'
 import { select, put, call } from 'redux-saga/effects'
 
 export function * addTodo (api, action) {
@@ -9,7 +9,7 @@ export function * addTodo (api, action) {
     const pasword = action.todo.email
     const responds = yield call(api.addTodo, email, pasword)
     console.log(responds)
-    yield put(UserRedux.saveTodo(action.name))
+    yield put(TodoType.saveTodo(action.name))
     const firstName = yield select(TodoSelector.getUserFirst)
     console.log(firstName)
   } catch (e) {

@@ -25,11 +25,15 @@ class ForgotPwScreen extends Component {
     const email = this.state.email
     
     const isValidEmail = validateEmail(email)
-    const emailErrorMg = Validationfunc(isValidEmail, 'Invalid email')
+    const emailErrorMg = Validationfunc(isValidEmail, 'Email don\'t exist')
     if(emailErrorMg){
       this.setState({
           emailErrorMg
       })
+    }
+
+    if(!emailErrorMg.error){
+      
     }
     event.preventDefault();
   }
@@ -48,7 +52,7 @@ class ForgotPwScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-  userName: state.User.firstName
+  userName: state.todo.firstName
 })
 const mapDispatchToProps = dispatch => ({
   addTodo: item => dispatch(TodoRedux.addTodo(item))

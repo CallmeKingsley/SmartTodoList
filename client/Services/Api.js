@@ -1,6 +1,6 @@
 import apisauce from 'apisauce'
 
-const API_URL = 'http://localhost:3000'
+const API_URL = 'http://localhost:3000/api'
 
 const createApi = (baseURL = API_URL) => {
   const api = apisauce.create({
@@ -8,13 +8,16 @@ const createApi = (baseURL = API_URL) => {
     headers: { Accept: 'application/vnd.github.v3+json' }
   })
 
-  const addTodo = (email, password) => api.post('/test', { name: email, price: 419 })
+  const createAccount = (user) => api.post('/users/user', user)
 
-  const getTodo = () => api.get('/test')
+  const retriveUserInfo = (user) => api.post('users/user/login', user)
+
+  const checkAvaliableEmail = (email) => api.post('/users/user/signup', email)
 
   return {
-    addTodo,
-    getTodo
+    createAccount,
+    retriveUserInfo,
+    checkAvaliableEmail
   }
 }
 

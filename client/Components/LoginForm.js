@@ -3,7 +3,6 @@ import MaterialInport from '../materialUI'
 import { InputField, Button, Text, LockIcon } from './CommonlyUsed'
 import { useStyles } from './Styles/LoginFormStyle'
 import { Link } from 'react-router-dom'
-
 const MaterialUI = MaterialInport()
 
 const LoginForm = (prop) => {
@@ -36,6 +35,7 @@ const LoginForm = (prop) => {
           />
           <Button name='Login' styles={classes.submit} />
         </form>
+
       </div>
     </MaterialUI.Container>
   )

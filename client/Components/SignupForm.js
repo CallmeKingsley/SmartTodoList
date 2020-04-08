@@ -48,7 +48,7 @@ const SignupForm = (prop) => {
               name='Confirm-password'
               autoComplete='current-password'
               autoFocus={false}
-              handleChange={prop.handleChange('Confirm-password')}
+              handleChange={prop.handleChange('confirmPassword')}
             />
           </MaterialUI.Grid>
           <Button name='SIGN UP' styles={classes.submit} />
