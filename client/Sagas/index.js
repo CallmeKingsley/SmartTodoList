@@ -6,7 +6,7 @@ import { UserType } from '../Redux/UserRedux'
 
 /* ------------ sagas ----------- */
 import { addTodo } from './TodoSagas'
-import { createAccount, loginUser } from './UserSagas'
+import { createAccount, loginUser, passwordReset } from './UserSagas'
 
 const Api = API.createApi()
 /* ------------ sagas ----------- */
@@ -14,6 +14,7 @@ export default function * root () {
   yield all([
     takeLatest(TodoType.ADD_TODO, addTodo, Api),
     takeLatest(UserType.CREATE_ACCOUNT, createAccount, Api),
-    takeLatest(UserType.LOGIN_USER, loginUser, Api)
+    takeLatest(UserType.LOGIN_USER, loginUser, Api),
+    takeLatest(UserType.PASSWORD_RESET, passwordReset, Api)
   ])
 }

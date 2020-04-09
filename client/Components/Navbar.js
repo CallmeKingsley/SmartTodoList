@@ -23,7 +23,7 @@ const NavBar = (prop) => {
           </Link>
         </MaterialUI.Typography>
         {prop.restrict === false ? <MarketingNav /> : ''}
-        {prop.authenticated === true ? <LogoutNav /> : <RegistrationNav />}
+        {prop.authenticated === true ? <LogoutNav /> : prop.hideAll === true ? ' ' : <RegistrationNav />}
       </MaterialUI.Toolbar>
     </MaterialUI.AppBar>
   )

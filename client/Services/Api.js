@@ -14,10 +14,13 @@ const createApi = (baseURL = API_URL) => {
 
   const checkAvaliableEmail = (email) => api.post('/users/user/signup', email)
 
+  const resetPassword = (email) => api.post('users/user/resetpassword', email)
+
   return {
     createAccount,
     retriveUserInfo,
-    checkAvaliableEmail
+    checkAvaliableEmail,
+    resetPassword
   }
 }
 

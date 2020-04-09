@@ -1,6 +1,8 @@
 const UserModel = require('../Models/User')
 const { validationResult } = require('express-validator')
 const nodemailer = require('nodemailer')
+const { isNil } = require('ramda')
+require('dotenv').config()
 
 module.exports = {
 
@@ -106,6 +108,7 @@ module.exports = {
       })
     }
   },
+
   addUser: async (req, res) => {
     try {
       const errors = validationResult(req)
@@ -131,7 +134,7 @@ module.exports = {
       })
     }
   },
-  deleteUser: async (res, req) => {
+  deleteUser: async (req, res) => {
     try {
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
@@ -152,7 +155,35 @@ module.exports = {
       })
     }
   },
-  sendResetPasswordEmail: async (res, req) => {
+
+  resetPasswordData: async (req, res) => {
+    try {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() })
+      }
+
+      const userId = req.body.Id
+      const newPassword = req.body.Password
+      console.log(newPassword)
+
+      const UserInfo = await UserModel.findOneAndUpdate({ _id: userId }, { $set: { Password: newPassword } }, (err, data) => {
+        if (data) {
+          res.status(200).json({
+            UserInfo
+          })
+        }
+      })
+      console.log(UserInfo)
+    } catch (e) {
+      res.status(500).json({
+        user: e,
+        message: 'could\'t update password'
+      })
+    }
+  },
+
+  resetPasswordEmail: async (req, res) => {
     try {
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
@@ -161,31 +192,34 @@ module.exports = {
 
       const Email = req.body.Email
       const user = await UserModel.findOne({ Email: Email })
-
+      console.log(user)
       if (user) {
-        const testAccount = await nodemailer.createTestAccount()
-
         const transporter = nodemailer.createTransport({
-          host: 'smtp.ethereal.email',
-          port: 587,
+          host: 'smtp.mailtrap.io',
+          port: 2525,
           secure: false, // true for 465, false for other ports
           auth: {
-            user: testAccount.user, // generated ethereal user
-            pass: testAccount.pass // generated ethereal password
+            user: process.env.EmailServer_UserName,
+            pass: process.env.EmailServer_Password
+          }
+        })
+        const info = await transporter.sendMail({
+          from: process.env.Company_Email, // sender address
+          to: Email, // list of receivers
+          subject: 'futureCompany reset password request ✔', // Subject line
+          text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+          'Please click on the following link, or paste this into your browser to complete the process:\n\n' + process.env.FrontEnd_URL + '/forgotPw/' + user._id + '\n\n' +
+          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+        }, errors => {
+          console.log('i was in here')
+          if (isNil(errors)) {
+            res.status(200).json({
+              message: 'Email Sents'
+            })
           }
         })
 
-        const info = await transporter.sendMail({
-          from: '"Fred Foo 👻" <foo@example.com>', // sender address
-          to: Email, // list of receivers
-          subject: 'Hello ✔', // Subject line
-          text: 'Hello world?' + 'http://' + req.heade.host + '/users/', // plain text body
-          html: '<b>Hello world?</b>' // html body
-        }, err => {
-          res.status(200).json({
-            message: 'Email sent'
-          })
-        })
+        console.log(info)
       }
     } catch (e) {
       res.status(500).json({

@@ -22,6 +22,8 @@ export const mataching = (password, password1) => {
 export const requiredLength = (password) => {
   if (password.length >= 8) {
     return true
+  } else {
+    return false
   }
 }
 

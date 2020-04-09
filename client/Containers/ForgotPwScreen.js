@@ -4,6 +4,7 @@ import ForgotPassword from '../Components/ForgotPwForm'
 import { connect } from 'react-redux'
 import TodoRedux from '../Redux/TodoRedux'
 import NavBar from '../Components/Navbar'
+import UserRedux from '../Redux/UserRedux'
 import Footer from '../Components/Footer'
 import App from './App'
 
@@ -15,8 +16,6 @@ class ForgotPwScreen extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.state = {
       email: '',
-      error: false, 
-      helpText:'',
       emailErrorMg :{ error: false, helpText: ''},
     };
   }
@@ -33,7 +32,8 @@ class ForgotPwScreen extends Component {
     }
 
     if(!emailErrorMg.error){
-      
+      console.log('ready forgot password')
+      this.props.forgotPasswordFunc({email})
     }
     event.preventDefault();
   }
@@ -55,7 +55,7 @@ const mapStateToProps = state => ({
   userName: state.todo.firstName
 })
 const mapDispatchToProps = dispatch => ({
-  addTodo: item => dispatch(TodoRedux.addTodo(item))
+  forgotPasswordFunc: email => dispatch(UserRedux.passwordReset(email))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ForgotPwScreen)
