@@ -32,8 +32,6 @@ module.exports = {
       if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() })
       }
-      console.log(Email)
-      console.log(Password)
 
       const user = await UserModel.findOne({ Email: Email, Password: Password })
       res.status(200).json({
@@ -48,13 +46,11 @@ module.exports = {
 
   findUserbyEmail: async (req, res) => {
     try {
-      console.log('i was in find user by email')
       const errors = validationResult(req)
       if (!errors.isEmpty()) {
         return res.status(422).json({ errors: errors.array() })
       }
       const Email = req.body.Email
-      console.log('email passed down' + Email)
       const user = await UserModel.findOne({ Email: Email })
 
       res.status(200).json({
@@ -165,16 +161,14 @@ module.exports = {
 
       const userId = req.body.Id
       const newPassword = req.body.Password
-      console.log(newPassword)
 
       const UserInfo = await UserModel.findOneAndUpdate({ _id: userId }, { $set: { Password: newPassword } }, (err, data) => {
         if (data) {
           res.status(200).json({
-            UserInfo
+            data
           })
         }
       })
-      console.log(UserInfo)
     } catch (e) {
       res.status(500).json({
         user: e,
@@ -192,7 +186,6 @@ module.exports = {
 
       const Email = req.body.Email
       const user = await UserModel.findOne({ Email: Email })
-      console.log(user)
       if (user) {
         const transporter = nodemailer.createTransport({
           host: 'smtp.mailtrap.io',
@@ -203,23 +196,24 @@ module.exports = {
             pass: process.env.EmailServer_Password
           }
         })
+        var str = new String(process.env.FrontEnd_URL + '/forgotPw/' + user._id)
+        var URL = process.env.FrontEnd_URL + '/forgotPw/' + user._id
+        var Link = str.link(URL)
+
         const info = await transporter.sendMail({
           from: process.env.Company_Email, // sender address
           to: Email, // list of receivers
           subject: 'futureCompany reset password request ✔', // Subject line
-          text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-          'Please click on the following link, or paste this into your browser to complete the process:\n\n' + process.env.FrontEnd_URL + '/forgotPw/' + user._id + '\n\n' +
-          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+          html: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.<br>' +
+          'Please click on the following link, or paste this into your browser to complete the process:<br>' + Link +
+          '<br><br>If you did not request this, please ignore this email and your password will remain unchanged.<br>'
         }, errors => {
-          console.log('i was in here')
           if (isNil(errors)) {
             res.status(200).json({
               message: 'Email Sents'
             })
           }
         })
-
-        console.log(info)
       }
     } catch (e) {
       res.status(500).json({

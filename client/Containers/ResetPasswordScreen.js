@@ -4,10 +4,7 @@ import ResetPasswordForm from '../Components/ResetPasswordForm'
 import { connect } from 'react-redux'
 import TodoRedux from '../Redux/TodoRedux'
 import NavBar from '../Components/Navbar'
-// import { useParams } from 'react-router-dom';
 import UserRedux from '../Redux/UserRedux'
-import Footer from '../Components/Footer'
-import App from './App'
 
 class ResetPasswordScreem extends Component {
 
@@ -27,7 +24,6 @@ class ResetPasswordScreem extends Component {
   onhandleSubmit () {
     const password = this.state.password
     const confrimPassword = this.state.confrimPassword
-   // let { id } = useParams();
     const isValidPassword = requiredLength(password)
     const isValidPassword2  = requiredLength(confrimPassword)
     
@@ -46,13 +42,13 @@ class ResetPasswordScreem extends Component {
       passwordErrorMg2
     })}
    
-    console.log(matchedPassword)
-    console.log(isValidPassword)
-    console.log(this.props.match.params.id)
-
     if(matchedPassword && isValidPassword){
+      const passwordData = {
+       Password : password,
+       Id: this.props.match.params.id
+      }
 
-
+      this.props.changePassword(passwordData)
     }
    
     event.preventDefault();
@@ -75,7 +71,7 @@ const mapStateToProps = state => ({
   userName: state.todo.firstName
 })
 const mapDispatchToProps = dispatch => ({
-  addTodo: item => dispatch(TodoRedux.addTodo(item))
+  changePassword: passwordData => dispatch(UserRedux.passwordReset(passwordData))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResetPasswordScreem)

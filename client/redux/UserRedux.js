@@ -11,6 +11,9 @@ const { Types, Creators } = createActions({
   loginUserFailure: ['error'],
   loginUserSuccess: ['user', 'loading'],
   authenticationErrorHanding: ['authenticationError'],
+  passwordChangeRequestSuccess: ['isEmailed'],
+  passwordChangeRequestFailure: ['error'],
+  passwordChangeRequest: ['success'],
   passwordResetSuccess: ['isEmailed'],
   passwordResetFailure: ['error'],
   passwordReset: ['success']
@@ -91,17 +94,17 @@ export const authenticationErrorHanding = (state, { authenticationError }) => {
   })
 }
 
-export const passwordReset = (state) => state.merge({
+export const passwordChangeRequest = (state) => state.merge({
   loading: { ...state.loading, user: true },
   errors: { ...state.errors, user: null }
 })
 
-export const passwordResetFailure = (state) => state.merge({
+export const passwordChangeRequestFailure = (state) => state.merge({
   loading: { ...state.loading, user: true },
   errors: { ...state.errors, user: null }
 })
 
-export const passwordResetSuccess = (state, { isEmailed }) => state.merge({
+export const passwordChangeRequestSuccess = (state, { isEmailed }) => state.merge({
   emailSend: isEmailed,
   loading: { ...state.loading, user: true },
   errors: { ...state.errors, user: null }
@@ -115,6 +118,23 @@ export const logoutAccount = (state) => {
   })
 }
 
+export const passwordResetSuccess = (state, { success }) =>
+  state.merge({
+    loading: { ...state.loading, user: false },
+    errors: { ...state.errors, user: error }
+  })
+
+export const passwordResetFailure = (state) =>
+  state.merge({
+    loading: { ...state.loading, user: false },
+    errors: { ...state.errors, user: error }
+  })
+
+export const passwordReset = (state) =>
+  state.merge({
+    loading: { ...state.loading, user: false }
+  })
+
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.CREATE_ACCOUNT_FAILURE]: createAccountFailure,
   [Types.CREATE_ACCOUNT_SUCCESS]: createAccountSuccess,
@@ -122,6 +142,9 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_USER_FAILURE]: loginUserFailure,
   [Types.LOGIN_USER_SUCCESS]: loginUserSuccess,
   [Types.LOGIN_USER]: loginUser,
+  [Types.PASSWORD_CHANGE_REQUEST_FAILURE]: passwordChangeRequestFailure,
+  [Types.PASSWORD_CHANGE_REQUEST_SUCCESS]: passwordChangeRequestSuccess,
+  [Types.PASSWORD_CHANGE_REQUEST]: passwordChangeRequest,
   [Types.PASSWORD_RESET_FAILURE]: passwordResetFailure,
   [Types.PASSWORD_RESET_SUCCESS]: passwordResetSuccess,
   [Types.PASSWORD_RESET]: passwordReset,

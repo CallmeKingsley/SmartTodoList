@@ -55,7 +55,7 @@ const mapStateToProps = state => ({
   userName: state.todo.firstName
 })
 const mapDispatchToProps = dispatch => ({
-  forgotPasswordFunc: email => dispatch(UserRedux.passwordReset(email))
+  forgotPasswordFunc: email => dispatch(UserRedux.passwordChangeRequest(email))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ForgotPwScreen)

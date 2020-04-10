@@ -16,11 +16,14 @@ const createApi = (baseURL = API_URL) => {
 
   const resetPassword = (email) => api.post('users/user/resetpassword', email)
 
+  const resetPassworddata = (data) => api.post('users/user/resetpassworddata', data)
+
   return {
     createAccount,
     retriveUserInfo,
     checkAvaliableEmail,
-    resetPassword
+    resetPassword,
+    resetPassworddata
   }
 }
 

@@ -52,25 +52,33 @@ export function * loginUser (api, action) {
   }
 }
 
-export function * passwordReset (api, action) {
+export function * passwordChangeRequest (api, action) {
   try {
-    console.log(action)
-    console.log('i was in the saga')
     const user = {
       Email: action.success.email
     }
-    // const userExist = yield call(api.checkAvaliableEmail, { Email: action.user.email })
-    // if(userExist.ok && userExist.status === 200){
 
-    // }
-    console.log(user)
     const responds = yield call(api.resetPassword, user)
-    console.log(responds)
     if (responds.ok && responds.status === 200) {
       yield put(UserRedux.authenticationErrorHanding({ forgot: false }))
     } else {
       yield put(UserRedux.authenticationErrorHanding({ forgot: true }))
     }
+  } catch (e) {
+    console.log(e)
+    yield put(UserRedux.passwordChangeRequestFailure(e.message))
+  }
+}
+
+export function * passwordReset (api, action) {
+  try {
+    const responds = yield call(api.resetPassworddata, action.success)
+    if (responds.ok && responds.status === 200) {
+      yield put(UserRedux.authenticationErrorHanding({ forgot: false }))
+    } else {
+      yield put(UserRedux.authenticationErrorHanding({ forgot: true }))
+    }
+    console.log(action)
   } catch (e) {
     console.log(e)
     yield put(UserRedux.passwordResetFailure(e.message))
