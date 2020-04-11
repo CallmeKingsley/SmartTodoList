@@ -20,7 +20,7 @@ export function * createAccount (api, action) {
     if (!isNil(responds.data.newUser) && isNil(userExist.data.user)) {
       yield put(UserRedux.createAccountSuccess(responds.data.newUser, false))
       History.push('/')
-    }else if(isNil(userExist.data.user)){
+    } else if (isNil(userExist.data.user)) {
       yield put(UserRedux.createAccountFailure({ error: true, message: 'Try again Later' }))
     }
   } catch (e) {
@@ -48,12 +48,12 @@ export function * loginUser (api, action) {
     if (responds.ok && !isNil(responds.data.user) && !isNil(userExist.data.user)) {
       yield put(UserRedux.loginUserSuccess(responds.data, false))
       History.push('/')
-    }else{
+    } else {
       yield put(UserRedux.loginUserFailure({ error: true, message: 'Invalid credential' }))
-    } 
+    }
   } catch (e) {
-     console.log(e)
-      yield put(UserRedux.loginUserFailure({ error: true, message: 'Network issue' }))
+    console.log(e)
+    yield put(UserRedux.loginUserFailure({ error: true, message: 'Network issue' }))
   }
 }
 

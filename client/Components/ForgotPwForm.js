@@ -1,7 +1,7 @@
 import React from 'react'
 import MaterialInport from '../materialUI'
 import { InputField, Button, Text, LockIcon } from './CommonlyUsed'
-import { useStyles, Style } from './Styles/LoginFormStyle'
+import { useStyles } from './Styles/LoginFormStyle'
 const MaterialUI = MaterialInport()
 
 const ForgotPwForm = (prop) => {
@@ -15,7 +15,7 @@ const ForgotPwForm = (prop) => {
         {prop.showSuccessText ? <SuccessEmailSent /> : ''}
         <form noValidate onSubmit={prop.handleSubmit}>
           <InputField id='email' label='Email Address' name='email' autoComplete='email' handleChange={prop.handleChange('email')} margin='normal' error={prop.error} helpText={prop.helpText} />
-          <Button name='Reset' disable = {prop.showSuccessText} styles={classes.submit} />
+          <Button name='Reset' disable={prop.showSuccessText} styles={classes.submit} />
         </form>
       </div>
     </MaterialUI.Container>
@@ -24,7 +24,7 @@ const ForgotPwForm = (prop) => {
 
 const SuccessEmailSent = () => {
   const classes = useStyles()
-  // const style = Style()
+
   return (
     <div className={classes.emailMessage}>
       <Text

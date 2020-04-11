@@ -1,6 +1,5 @@
 import React from 'react'
 import LoginScreen from './LoginScreen'
-import NavBar from '../Components/Navbar'
 import ForgotPwScreen from '../Containers/ForgotPwScreen'
 import Home from '../Containers/HomeScreen'
 import { ProtectedRoute } from './ProtectedRoute'
@@ -14,9 +13,7 @@ import {
   Route
 } from 'react-router-dom'
 import SignupScreen from './SignupScreen'
-const User = () => {
-  return (<h1>kingsley</h1>)
-}
+
 export default function App () {
   return (
     <Router history={History}>

@@ -154,5 +154,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.PASSWORD_RESET_FAILURE]: passwordResetFailure,
   [Types.PASSWORD_RESET_SUCCESS]: passwordResetSuccess,
   [Types.PASSWORD_RESET]: passwordReset,
-  [Types.LOGOUT_ACCOUNT]: logoutAccount,
+  [Types.LOGOUT_ACCOUNT]: logoutAccount
 })

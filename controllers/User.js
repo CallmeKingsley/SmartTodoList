@@ -57,7 +57,7 @@ module.exports = {
         user,
         message: 'User with that email already exist'
       })
-    } catch (e) {
+    } catch (err) {
       res.status(404).json({
         error: err,
         message: 'couldn\'t find a user'
@@ -165,6 +165,11 @@ module.exports = {
       const UserInfo = await UserModel.findOneAndUpdate({ _id: userId }, { $set: { Password: newPassword } }, (err, data) => {
         if (data) {
           res.status(200).json({
+            data
+          })
+        }
+        if (err) {
+          res.status(500).json({
             data
           })
         }
