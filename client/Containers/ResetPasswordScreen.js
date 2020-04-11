@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {requiredLength,mataching,Validationfunc} from '../Validation'
 import ResetPasswordForm from '../Components/ResetPasswordForm'
+import {Text} from '../Components/CommonlyUsed'
+import {isNil, prop} from 'ramda'
 import { connect } from 'react-redux'
 import TodoRedux from '../Redux/TodoRedux'
 import NavBar from '../Components/Navbar'
@@ -60,14 +62,19 @@ class ResetPasswordScreem extends Component {
     return (
       <div>
         <NavBar hideAll ={true}/>
-        <ResetPasswordForm handleSubmit={this.onhandleSubmit}  handleChange ={this.handleChange} passwordError ={this.state.passwordErrorMg} passwordError2 ={this.state.passwordErrorMg2}/>
+        <ResetPasswordForm handleSubmit={this.onhandleSubmit}  
+        handleChange ={this.handleChange} 
+        passwordError ={this.state.passwordErrorMg} 
+        passwordError2 ={this.state.passwordErrorMg2}/>
+          {isNil(this.props.serverSignUpError) ? '' : this.props.serverSignUpError.message === 'unable to save password' ? 
+          <Text sizeType='h5' message ={'Please try again later'} color='error'/> : '' }
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  userName: state.todo.firstName
+  serverSignUpError: state.user.errors.passwordChange
 })
 const mapDispatchToProps = dispatch => ({
   changePassword: passwordData => dispatch(UserRedux.passwordReset(passwordData))

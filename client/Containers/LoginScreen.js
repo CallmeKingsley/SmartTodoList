@@ -15,10 +15,12 @@ class LoginScreen extends Component {
       email: '',
       password: '',
       emailValidation: { error: false, helpText: ''},
-      emailDoesntExist: { error: true, helpText: 'Email Doesn\'t Exist'},
+      emailDoesntExist: { error: true, helpText: 'invalid Credential'},
       PasswordValidation: { error: false, helpText: ''}
     };
   }
+  
+  
 
   onhandleSubmit (item) {
 
@@ -57,8 +59,8 @@ class LoginScreen extends Component {
       <div>
         <Nav restrict ={true}/>
         <LoginForm handleSubmit={this.onhandleSubmit} 
-        emailValidation = {isNil(this.props.serverLoginError) ? this.state.emailValidation :this.state.emailDoesntExist } 
-        passwordValidation ={this.state.PasswordValidation} 
+        emailValidation = {isNil(this.props.loginServerError) ? this.state.emailValidation : this.state.emailDoesntExist } 
+        passwordValidation ={isNil(this.props.loginServerError) ?this.state.PasswordValidation: this.state.emailDoesntExist } 
         handleChange ={this.handleChange}/>
       </div>
     )
@@ -66,7 +68,7 @@ class LoginScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-  serverLoginError: state.user.errors.authenticationError.login
+ loginServerError: state.user.errors.login
 })
 
 const mapDispatchToProps = dispatch => ({

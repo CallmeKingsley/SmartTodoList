@@ -3,6 +3,7 @@ import SignupForm from '../Components/SignupForm'
 import { connect } from 'react-redux'
 import UserAction from '../Redux/UserRedux'
 import Nav from '../Components/Navbar'
+import {Text} from '../Components/CommonlyUsed'
 import {isNil, prop} from 'ramda'
 import {validateEmail,requiredLength,Validationfunc,emptyString, mataching} from '../Validation'
 class SignupScreen extends Component {
@@ -84,13 +85,14 @@ class SignupScreen extends Component {
              passwordErrorMg = { this.state.passwordErrorMg}
              confirmPwErrorMg = {this.state.confirmPwErrorMg}
              />
+             {isNil(this.props.serverSignUpError) ? '' : this.props.serverSignUpError.message === 'Try again Later' ?  <Text sizeType='h5' message ={'Please try again later'} color='error'/> : '' }
             </div>
         )
     }
 }
 
 const mapStateToProps = state => ({
-    serverSignUpError: state.user.errors.authenticationError.signup
+    serverSignUpError: state.user.errors.signup
 })
   
 const mapDispatchToProps = dispatch => ({

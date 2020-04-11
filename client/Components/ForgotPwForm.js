@@ -15,7 +15,7 @@ const ForgotPwForm = (prop) => {
         {prop.showSuccessText ? <SuccessEmailSent /> : ''}
         <form noValidate onSubmit={prop.handleSubmit}>
           <InputField id='email' label='Email Address' name='email' autoComplete='email' handleChange={prop.handleChange('email')} margin='normal' error={prop.error} helpText={prop.helpText} />
-          <Button name='Reset' disable styles={classes.submit} />
+          <Button name='Reset' disable = {prop.showSuccessText} styles={classes.submit} />
         </form>
       </div>
     </MaterialUI.Container>

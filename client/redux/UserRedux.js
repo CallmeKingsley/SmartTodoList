@@ -10,7 +10,6 @@ const { Types, Creators } = createActions({
   loginUser: ['user'],
   loginUserFailure: ['error'],
   loginUserSuccess: ['user', 'loading'],
-  authenticationErrorHanding: ['authenticationError'],
   passwordChangeRequestSuccess: ['isEmailed'],
   passwordChangeRequestFailure: ['error'],
   passwordChangeRequest: ['success'],
@@ -95,12 +94,6 @@ export const loginUserFailure = (state, { error }) =>
     errors: { ...state.errors, login: error }
   })
 
-export const authenticationErrorHanding = (state, { authenticationError }) => {
-  return state.merge({
-    errors: { ...state.errors, authenticationError }
-  })
-}
-
 export const passwordChangeRequest = (state) => state.merge({
   loading: { ...state.loading, forgetPasswordEmail: true },
   errors: { ...state.errors, forgetPasswordEmail: null }
@@ -162,5 +155,4 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.PASSWORD_RESET_SUCCESS]: passwordResetSuccess,
   [Types.PASSWORD_RESET]: passwordReset,
   [Types.LOGOUT_ACCOUNT]: logoutAccount,
-  [Types.AUTHENTICATION_ERROR_HANDING]: authenticationErrorHanding
 })

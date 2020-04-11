@@ -20,11 +20,12 @@ export function * createAccount (api, action) {
     if (!isNil(responds.data.newUser) && isNil(userExist.data.user)) {
       yield put(UserRedux.createAccountSuccess(responds.data.newUser, false))
       History.push('/')
-    } else {
-      yield put(UserRedux.createAccountFailure({ error: true, message: 'Network Issue' }))
+    }else if(isNil(userExist.data.user)){
+      yield put(UserRedux.createAccountFailure({ error: true, message: 'Try again Later' }))
     }
   } catch (e) {
-    yield put(UserRedux.createAccountFailure({ error: true, message: e.message }))
+    console.log(e)
+    yield put(UserRedux.createAccountFailure({ error: true, message: 'Network Issue' }))
   }
 }
 
@@ -40,18 +41,19 @@ export function * loginUser (api, action) {
     }
 
     const responds = yield call(api.retriveUserInfo, user)
-    if (isNil(responds.data.user)) {
+    if (!isNil(userExist.data.user) && isNil(responds.data.user)) {
       yield put(UserRedux.loginUserFailure({ error: true, message: 'Invalid credential' }))
     }
 
     if (responds.ok && !isNil(responds.data.user) && !isNil(userExist.data.user)) {
       yield put(UserRedux.loginUserSuccess(responds.data, false))
       History.push('/')
-    } else {
-      yield put(UserRedux.loginUserFailure({ error: true, message: 'Network issue' }))
-    }
+    }else{
+      yield put(UserRedux.loginUserFailure({ error: true, message: 'Invalid credential' }))
+    } 
   } catch (e) {
-    yield put(UserRedux.loginUserFailure({ error: true, message: e.message }))
+     console.log(e)
+      yield put(UserRedux.loginUserFailure({ error: true, message: 'Network issue' }))
   }
 }
 
