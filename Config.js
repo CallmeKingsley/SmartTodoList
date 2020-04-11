@@ -6,7 +6,10 @@ module.exports = {
   mongodbConfig () {
     mongoose.connect(
         `mongodb://smart_todoList:${process.env.MongoDB_Pw}@ds229068.mlab.com:29068/${process.env.MongoDB_Username}`
-        , (err) => {
+        , {
+          useNewUrlParser: true,
+          useUnifiedTopology: true
+        }, (err) => {
           if (err) {
             console.log('something bad happened')
             console.log(err)

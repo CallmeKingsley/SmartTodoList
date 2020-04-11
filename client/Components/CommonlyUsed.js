@@ -50,6 +50,7 @@ export const Button = (prop) => {
       variant={prop.variant}
       color={prop.color}
       className={prop.styles}
+      disabled={prop.disable}
     >
       {prop.name}
     </MaterialUI.Button>
@@ -84,10 +85,13 @@ export const SignInLinks = (prop) => {
 
 export const Text = (prop) => {
   return (
-    <MaterialUI.Typography component={prop.sizeType} className={prop.inputtext} variant='h5'>
+    <MaterialUI.Typography component={prop.sizeType} className={prop.inputtext} variant={prop.sizeType} color={prop.color}>
       {prop.message}
     </MaterialUI.Typography>
   )
+}
+Text.defaultProps = {
+  sizeType: 'h5'
 }
 
 export const LockIcon = (prop) => {

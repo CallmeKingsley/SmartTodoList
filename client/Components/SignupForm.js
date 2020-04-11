@@ -16,7 +16,7 @@ const SignupForm = (prop) => {
     <MaterialUI.Container component='main' maxWidth='xs'>
       <div className={classes.paper}>
         <LockIcon avatarStyle={classes.avatar} />
-        <Text sizeType='h1' message='Sign Up' inputtext={classes.inputtext} />
+        <Text sizeType='h5' message='Sign Up' inputtext={classes.inputtext} />
         <form noValidate onSubmit={prop.handleSubmit}>
           <MaterialUI.Grid container spacing={2}>
             {values.hideDoubleName ? <UserName handleChange={prop.handleChange} usernameErrorMg={prop.usernameErrorMg} /> : <DoubleName handleChange={prop.handleChange} />}

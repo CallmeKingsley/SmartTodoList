@@ -9,6 +9,14 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center'
   },
+  emailMessage: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  emailMessageText: {
+    fontSize: 16
+  },
   submit: {
     margin: theme.spacing(3, 0, 2)
   },
@@ -24,7 +32,7 @@ export const useStyles = makeStyles((theme) => ({
 // Regular Styles
 export const Style = {
   button: {
-    color: 'red',
-    background: 'green'
+    color: 'green',
+    fontSize: 100
   }
 }

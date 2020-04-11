@@ -12,20 +12,19 @@ export function * createAccount (api, action) {
     }
 
     const userExist = yield call(api.checkAvaliableEmail, { Email: action.user.email })
-    console.log(userExist)
+    if (!isNil(userExist.data.user)) {
+      yield put(UserRedux.createAccountFailure({ error: true, message: 'Email already Exist' }))
+    }
+
     const responds = yield call(api.createAccount, user)
-    console.log(responds)
-    if (responds.ok && responds.status === 200 && isNil(userExist.data.user)) {
-      yield put(UserRedux.authenticationErrorHanding({ signup: false }))
-      yield put(UserRedux.createAccountSuccess(responds.data.newUser, true))
+    if (!isNil(responds.data.newUser) && isNil(userExist.data.user)) {
+      yield put(UserRedux.createAccountSuccess(responds.data.newUser, false))
       History.push('/')
     } else {
-      yield put(UserRedux.authenticationErrorHanding({ signup: true }))
+      yield put(UserRedux.createAccountFailure({ error: true, message: 'Network Issue' }))
     }
   } catch (e) {
-    console.log(e)
-    yield put(UserRedux.createAccountFailure(e.message))
-    console.log('error')
+    yield put(UserRedux.createAccountFailure({ error: true, message: e.message }))
   }
 }
 
@@ -36,19 +35,23 @@ export function * loginUser (api, action) {
       Password: action.user.password
     }
     const userExist = yield call(api.checkAvaliableEmail, { Email: action.user.email })
-    console.log(userExist)
+    if (isNil(userExist.data.user)) {
+      yield put(UserRedux.loginUserFailure({ error: true, message: 'Invalid credential' }))
+    }
+
     const responds = yield call(api.retriveUserInfo, user)
-    console.log(responds)
-    if (responds.ok && responds.status === 200 && !isNil(userExist.data.user)) {
-      yield put(UserRedux.loginUserSuccess(responds.data, true))
-      yield put(UserRedux.authenticationErrorHanding({ login: false }))
+    if (isNil(responds.data.user)) {
+      yield put(UserRedux.loginUserFailure({ error: true, message: 'Invalid credential' }))
+    }
+
+    if (responds.ok && !isNil(responds.data.user) && !isNil(userExist.data.user)) {
+      yield put(UserRedux.loginUserSuccess(responds.data, false))
       History.push('/')
     } else {
-      yield put(UserRedux.authenticationErrorHanding({ login: true }))
+      yield put(UserRedux.loginUserFailure({ error: true, message: 'Network issue' }))
     }
   } catch (e) {
-    console.log(e)
-    yield put(UserRedux.loginUserFailure(e.message))
+    yield put(UserRedux.loginUserFailure({ error: true, message: e.message }))
   }
 }
 
@@ -58,29 +61,37 @@ export function * passwordChangeRequest (api, action) {
       Email: action.success.email
     }
 
+    const userExist = yield call(api.checkAvaliableEmail, { Email: action.success.email })
+    if (isNil(userExist.data.user)) {
+      yield put(UserRedux.passwordChangeRequestFailure({ error: true, message: 'Invalid Email' }))
+    }
+
     const responds = yield call(api.resetPassword, user)
-    if (responds.ok && responds.status === 200) {
-      yield put(UserRedux.authenticationErrorHanding({ forgot: false }))
+    console.log(responds)
+    if (responds.ok && !isNil(userExist.data.user)) {
+      yield put(UserRedux.passwordChangeRequestSuccess())
     } else {
-      yield put(UserRedux.authenticationErrorHanding({ forgot: true }))
+      yield put(UserRedux.passwordChangeRequestFailure({ error: true, message: 'NetWork issue' }))
     }
   } catch (e) {
     console.log(e)
-    yield put(UserRedux.passwordChangeRequestFailure(e.message))
+    yield put(UserRedux.passwordChangeRequestFailure({ error: true, message: e.message }))
   }
 }
 
 export function * passwordReset (api, action) {
   try {
     const responds = yield call(api.resetPassworddata, action.success)
-    if (responds.ok && responds.status === 200) {
-      yield put(UserRedux.authenticationErrorHanding({ forgot: false }))
+    console.log(responds)
+    if (!isNil(responds.data.data)) {
+      yield put(UserRedux.passwordResetSuccess(responds.data, false))
+      History.push('/')
     } else {
-      yield put(UserRedux.authenticationErrorHanding({ forgot: true }))
+      yield put(UserRedux.passwordResetFailure({ error: true, message: 'unable to save password' }))
     }
     console.log(action)
   } catch (e) {
     console.log(e)
-    yield put(UserRedux.passwordResetFailure(e.message))
+    yield put(UserRedux.passwordResetFailure({ error: true, message: e.message }))
   }
 }

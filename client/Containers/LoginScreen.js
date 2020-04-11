@@ -3,7 +3,7 @@ import LoginForm from '../Components/LoginForm'
 import { connect } from 'react-redux'
 import UserRedux from '../Redux/UserRedux'
 import Nav from '../Components/Navbar'
-import {isNil, prop} from 'ramda'
+import {isNil} from 'ramda'
 import {validateEmail,requiredLength,Validationfunc} from '../Validation'
 
 class LoginScreen extends Component {

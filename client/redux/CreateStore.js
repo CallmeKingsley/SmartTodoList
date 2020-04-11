@@ -8,7 +8,7 @@ import 'babel-polyfill'
 const transformerConfig = {
   whitelistPerReducer: {
     todo: ['todoList'],
-    user: ['user', 'authenticated', 'errors']
+    user: ['user', 'authenticated', 'errors', 'userId', 'loading']
   },
   blacklistPerReducer: {
     analytics: [

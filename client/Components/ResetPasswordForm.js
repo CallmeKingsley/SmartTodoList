@@ -12,7 +12,7 @@ const ResetPasswordForm = (prop) => {
     <MaterialUI.Container component='main' maxWidth='xs'>
       <div className={classes.paper}>
         <LockIcon avatarStyle={classes.avatar} />
-        <Text sizeType='h1' message='Reset your password' />
+        <Text sizeType='h5' message='Reset your password' />
         <form noValidate onSubmit={prop.handleSubmit}>
           <InputField id='password' label='New Password' name='password' autoComplete='password' handleChange={prop.handleChange('password')} margin='normal' error={prop.passwordError.error} helpText={prop.passwordError.helpText} />
           <InputField id='confrimPassword' label='Confirm New Password' name='confrimPassword' autoComplete='confrimPassword' handleChange={prop.handleChange('confrimPassword')} margin='normal' error={prop.passwordError2.error} helpText={prop.passwordError2.helpText} />

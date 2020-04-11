@@ -7,7 +7,7 @@ import NavBar from '../Components/Navbar'
 import UserRedux from '../Redux/UserRedux'
 import Footer from '../Components/Footer'
 import App from './App'
-
+import {isNil} from 'ramda'
 class ForgotPwScreen extends Component {
 
   constructor (props) {
@@ -45,14 +45,14 @@ class ForgotPwScreen extends Component {
     return (
       <div>
         <NavBar />
-        <ForgotPassword handleSubmit={this.onhandleSubmit}  handleChange ={this.handleChange} error ={this.state.emailErrorMg.error} helpText = {this.state.emailErrorMg.helpText}/>
+        <ForgotPassword handleSubmit={this.onhandleSubmit} showSuccessText = {isNil(this.props.successfullySendEmail)} handleChange ={this.handleChange} error ={this.state.emailErrorMg.error} helpText = {this.state.emailErrorMg.helpText}/>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  userName: state.todo.firstName
+  successfullySendEmail: state.user.errors.forgetPasswordEmail
 })
 const mapDispatchToProps = dispatch => ({
   forgotPasswordFunc: email => dispatch(UserRedux.passwordChangeRequest(email))

@@ -27,21 +27,20 @@ class ResetPasswordScreem extends Component {
     const isValidPassword = requiredLength(password)
     const isValidPassword2  = requiredLength(confrimPassword)
     
-    
+  
     const passwordErrorMg = Validationfunc(isValidPassword, 'Password must be atlease 8 characters')
     if(passwordErrorMg){
     this.setState({
       passwordErrorMg
     })}
 
-    const matchedPassword = mataching(isValidPassword,isValidPassword2)
+    const matchedPassword = mataching(confrimPassword,password)
     const passwordErrorMg2 = Validationfunc(matchedPassword, 'Password doesn\'t match')
- 
     if(passwordErrorMg2){
     this.setState({
       passwordErrorMg2
     })}
-   
+
     if(matchedPassword && isValidPassword){
       const passwordData = {
        Password : password,

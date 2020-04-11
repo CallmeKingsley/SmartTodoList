@@ -11,7 +11,7 @@ const LoginForm = (prop) => {
     <MaterialUI.Container component='main' maxWidth='xs'>
       <div className={classes.paper}>
         <LockIcon avatarStyle={classes.avatar} />
-        <Text sizeType='h1' message='Sign In' />
+        <Text sizeType='h5' message='Sign In' />
         <form noValidate onSubmit={prop.handleSubmit}>
           <InputField
             id='email'
