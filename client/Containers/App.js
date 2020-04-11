@@ -7,7 +7,6 @@ import Marketing from '../Containers/MarketingScreen'
 import ResetPassword from '../Containers/ResetPasswordScreen'
 import History from '../History'
 import {
-
   Router,
   Switch,
   Route
