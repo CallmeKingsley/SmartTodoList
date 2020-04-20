@@ -9,11 +9,7 @@ const MaterialUI = MaterialInport()
 
 const NavBar = (prop) => {
   const classes = useStyles()
-  // const dispatch = useDispatch()
-  // const incrementCounter = useCallback(
-  //   () => dispatch(UserAction.logoutAccount),
-  //   [dispatch]
-  // )
+
   return (
     <MaterialUI.AppBar position='static' color='default' elevation={0} className={classes.appBar}>
       <MaterialUI.Toolbar className={classes.toolbar}>

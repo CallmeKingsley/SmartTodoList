@@ -5,6 +5,8 @@ import { Provider } from 'react-redux'
 import App from './Containers/RootContainer'
 import 'babel-polyfill'
 
+// add universal styles here
+
 import getStore from './Redux'
 
 // create our store
